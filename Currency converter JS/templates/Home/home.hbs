@@ -1,0 +1,52 @@
+{{>header}}
+
+<form action="#/converter" method="post">
+  <div class="masthead">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center justify-content-center text-center">
+                    <div class="col-lg-10 align-self-end">
+                        <h1 class="text-uppercase text-white font-weight-bold">Your Favorite Source of Free Currency Information</h1>
+                        <hr class="divider my-4" />
+                    </div>
+                    <div class="col-lg-8 align-self-baseline">
+                        <p   id="alert" class="text-white-75 font-weight-light mb-15"></p>
+                             <!-- Notifications-->
+                                <div id="notifications">
+                                    <div id="errorBox" class="alert alert-danger" role="alert">{Error Message...}</div>
+                                </div>
+                        <div class="form-group row">
+                            <div class="col-sm-3">
+                                <p class="text-white-75 font-weight-light mb-0">Amount</p>
+                                <input class="form-control is-invalid" id="inputAmount" placeholder="0-1000000">
+                            </div>
+                            <div class="col-sm-4">
+                                <p class="text-white-75 font-weight-light mb-0">From</p>
+                                <select class="form-control is" id="dropDownListFrom" >
+
+                                    {{>dropdown}}
+                                         
+                                </select>
+                            </div>
+                            <div class="col-mid-1">
+                                <svg class="text-white-75 font-weight-light mb-5"
+                                     data-id="icon-exchange" viewBox="0 0 50 47" height="32px" width="30px">
+                                    <path fill="currentColor" fill-rule="evenodd"
+                                d="M49.897 35.977L26.597 25v7.874H7.144v6.207h19.455v7.874zM.103 11.642l23.3 10.977v-7.874h19.454V8.538H23.402V.664z"></path>
+                                </svg>
+                            </div>
+                            <div class="col-sm-4">
+                                <p class="text-white-75 font-weight-light mb-0">To</p>
+                                <select class="form-control is" id="dropDownListTo">
+
+                                    {{>dropdown}}
+
+                                </select>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-xl js-scroll-trigger" id="btnConverters">Converter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</form>
+{{> footer}}

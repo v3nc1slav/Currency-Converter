@@ -1,4 +1,10 @@
-﻿<form action="#/converter" method="post">
+﻿@model Currency_converter.Models.HomeViewModels
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<form asp-controller="Converters" asp-action="Converters" method="post">
     <div class="masthead">
         <div class="container h-100">
             <div class="row h-100 align-items-center justify-content-center text-center">
@@ -9,17 +15,23 @@
                 <div class="col-lg-8 align-self-baseline">
                     <p id="alert" class="text-white-75 font-weight-light mb-15"></p>
                     <!-- Notifications-->
-                    <div id="notifications">
-                        <div id="errorBox" class="alert alert-danger" role="alert">{Error Message...}</div>
-                    </div>
+                    @if (Model.Text != null)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                                @Model.Text
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    }
                     <div class="form-group row">
                         <div class="col-sm-3">
                             <p class="text-white-75 font-weight-light mb-0">Amount</p>
-                            <input class="form-control is-invalid" id="inputAmount" placeholder="0-1000000">
+                            <input class="form-control is-invalid" id="inputAmount" name="inputAmount" placeholder="0-1000000">
                         </div>
                         <div class="col-sm-4">
                             <p class="text-white-75 font-weight-light mb-0">From</p>
-                            <select class="form-control is" id="dropDownListFrom">
+                            <select class="form-control is" id="dropDownListFrom" name="formControl">
 
                                 <partial name="_DropDownParshalView" />
 
@@ -34,7 +46,7 @@
                         </div>
                         <div class="col-sm-4">
                             <p class="text-white-75 font-weight-light mb-0">To</p>
-                            <select class="form-control is" id="dropDownListTo">
+                            <select class="form-control is" id="dropDownListTo" name="toControl">
 
                                 <partial name="_DropDownParshalView" />
 

@@ -18,18 +18,23 @@ namespace Currency_converter.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string? input)
         {
-            return View();
+            _logger.LogInformation("Get index");
+            var viewModel = new HomeViewModels
+            {
+                Text = input,
+            };
+            return this.View(viewModel);
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Privacy()
         {
             return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public async Task<IActionResult> Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }

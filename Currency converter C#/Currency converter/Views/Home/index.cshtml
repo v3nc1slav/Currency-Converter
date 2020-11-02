@@ -17,8 +17,8 @@
                     <!-- Notifications-->
                     @if (Model.Text != null)
                     {
-                        <div class="alert alert-danger" role="alert">
-                                @Model.Text
+                        <div id="resultBox" class="alert alert-danger" role="alert">
+                            @Model.Text
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -59,4 +59,18 @@
         </div>
     </div>
 </form>
+
+
+    <script type="text/javascript">
+
+        function solve() {
+            if ( @Model.Booll    === true) {
+                let div = document.getElementById("resultBox");
+                div.className = "alert alert-success";
+            }
+        }
+
+         solve()
+    </script>
+
 

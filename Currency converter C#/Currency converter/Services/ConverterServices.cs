@@ -10,29 +10,33 @@
 
         }
 
-        public string Converter(int inputAmount, string formControl, string toControl)
+        public string Converter(double inputAmount, string formControl, string toControl)
         {
-            var client = new RestClient("https://api.exchangeratesapi.io/latest?base=BGN");
+            var url = $"https://api.exchangeratesapi.io/latest?base={formControl}";
+            var client = new RestClient(url);
             client.Timeout = -1;
             var request = new RestRequest(Method.GET);
             request.AddHeader("0", "0");
             IRestResponse response = client.Execute(request);
-            var velue = getVelue(response.Content, toControl, inputAmount);
+
+            var velue = getVelue(response.Content, toControl);
 
             var result = double.Parse(velue) * inputAmount;
 
-            return $"{inputAmount}{formControl} to {result}{toControl}";
+            return $"{inputAmount} {formControl} to {result} {toControl}";
         }
 
-        private string getVelue(string text, string toControl, int inputAmount)
+        private string getVelue(string text, string toControl)
         {
-            string pattern = $"{toControl}.: [0-9]*.[0-9]*";
+            text = text.Replace("\"", string.Empty);
+            System.Console.WriteLine(text);
+            string pattern = $"{toControl}:[0-9]*.[0-9]*";
 
             RegexOptions options = RegexOptions.Multiline;
 
             foreach (Match m in Regex.Matches(text, pattern, options))
             {
-                var velue = m.Value.Substring(6, m.Value.Length-6);
+                var velue = m.Value.Substring(4, m.Value.Length-4);
                
                 return velue;
             }

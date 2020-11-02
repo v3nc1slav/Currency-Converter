@@ -31,8 +31,10 @@
             {
                 return this.RedirectToAction("Index", "Home", new { input = "Please select a different value for the TO field than in the FROM field!" });
             }
+
             var result = converter.Converter(input.inputAmount, input.formControl, input.toControl);
-            return View();
+           
+            return this.RedirectToAction("Index", "Home", new { input = result, booll = true });
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

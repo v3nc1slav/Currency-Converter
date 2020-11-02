@@ -18,12 +18,13 @@
             _logger = logger;
         }
 
-        public async Task<IActionResult> Index(string? input)
+        public async Task<IActionResult> Index(string? input, bool booll = false)
         {
             _logger.LogInformation("Get index");
             var viewModel = new HomeViewModels
             {
                 Text = input,
+                Booll = booll,
             };
             return this.View(viewModel);
         }

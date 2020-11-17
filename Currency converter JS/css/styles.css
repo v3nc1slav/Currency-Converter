@@ -10035,6 +10035,12 @@ hr.light {
 
 .page-section {
   padding: 8rem 0;
+  background-color: #fff;
+  transition: background-color 0.2s ease;
+}
+
+#services{
+  background-color: rgb(25, 83, 100);
 }
 
 #mainNav {

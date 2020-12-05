@@ -12,6 +12,24 @@
 
         public string Converter(double inputAmount, string formControl, string toControl)
         {
+            var response = GetRespons(formControl);
+
+            var velue = getVelue(response.Content, toControl);
+
+            var result = double.Parse(velue) * inputAmount;
+
+            return $"{inputAmount} {formControl} to {result} {toControl}";
+        }
+
+        public string ConverterApi(string formControl)
+        {
+            var response = GetRespons(formControl);
+
+            return response.Content;
+        }
+
+        private IRestResponse GetRespons(string formControl)
+        {
             var url = $"https://api.exchangeratesapi.io/latest?base={formControl}";
             var client = new RestClient(url);
             client.Timeout = -1;
@@ -19,11 +37,7 @@
             request.AddHeader("0", "0");
             IRestResponse response = client.Execute(request);
 
-            var velue = getVelue(response.Content, toControl);
-
-            var result = double.Parse(velue) * inputAmount;
-
-            return $"{inputAmount} {formControl} to {result} {toControl}";
+            return response;
         }
 
         private string getVelue(string text, string toControl)
